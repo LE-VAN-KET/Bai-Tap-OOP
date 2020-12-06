@@ -27,17 +27,29 @@ void NhanVien::scan() {
 			cout << "TenNhanVien: ";
 			getline(cin, this->TenNhanVien);
 			this->NgayNhan.scan();
+			kt = true;
+		}
+		catch (invalid_argument& exception) {
+			cout << exception.what() << endl;
+			kt = false;
+		}
+	};
+	kt = false;
+	while (!kt) {
+		try {
+			int gender;
 			cout << "Gioi tinh: "; // 1-nam 0-nu
-			cin >> this->GioiTinh;
-			if (this->GioiTinh < 0 || this->GioiTinh > 1)
-				throw invalid_argument("Gioi Tinh must be 0 or 1");
+			cin >> gender;
+			if (gender < 0 || gender > 1)
+				throw invalid_argument("Gioi tinh must be between 0 and 1");
+			this->GioiTinh = gender;
 			cin.ignore();
 			kt = true;
 		} catch (invalid_argument& exception) {
 			cout << exception.what() << endl;
 			kt = false;
 		}
-	};
+	}
 	this->Luong = 0;
 }
 
