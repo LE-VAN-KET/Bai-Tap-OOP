@@ -366,6 +366,19 @@ void QLNV<T>::deleteEmploye() {
 
 template<class T>
 void QLNV<T>::selectionSalary() {
+	for (int i = 0; i < this->size; ++i) {
+		if (NVBC* kt = dynamic_cast<NVBC*>(this->data[i])) {
+			double heluong = 0;
+			NVBC* nhanvien = static_cast<NVBC*>(this->data[i]);
+			time_t now = time(0);
+			tm ltm;
+			localtime_s(&ltm, &now);
+			//tm* ltm = localtime(&now);
+			int yearWorkings = (1900 + ltm.tm_year) - nhanvien->getNgayNhan().getYear();
+			if (yearWorkings >= 5) heluong = yearWorkings * 1.0 / 100;
+			nhanvien->setThamNien(heluong);
+		}
+	}
 	T* _nv = this->selectionSearch();
 	if (_nv == NULL) return;
 	double luong = _nv->TinhLuong();

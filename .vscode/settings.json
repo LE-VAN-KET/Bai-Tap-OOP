@@ -19,6 +19,7 @@
         "string": "cpp",
         "iostream": "cpp",
         "ctime": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "xlocnum": "cpp"
     }
 }
